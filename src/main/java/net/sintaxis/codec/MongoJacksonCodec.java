@@ -14,14 +14,14 @@ import java.io.UncheckedIOException;
 
 public class MongoJacksonCodec<T> implements Codec<T> {
 
-  private final ObjectMapper objectMapper;
+  private final ObjectMapper mapper;
   private final Codec<RawBsonDocument> rawBsonDocumentCodec;
   private final Class<T> clazz;
 
   public MongoJacksonCodec(ObjectMapper mapper,
                            CodecRegistry registry,
                            Class<T> clazz) {
-    this.objectMapper = mapper;
+    this.mapper = mapper;
     this.rawBsonDocumentCodec = registry.get(RawBsonDocument.class);
     this.clazz = clazz;
   }
@@ -35,7 +35,7 @@ public class MongoJacksonCodec<T> implements Codec<T> {
               .encode(
                       writer,
                       RawBsonDocument.parse(
-                              objectMapper.writeValueAsString(value)),
+                              mapper.writeValueAsString(value)),
                       encoderContext
               );
     } catch (IOException exception) {
@@ -47,9 +47,10 @@ public class MongoJacksonCodec<T> implements Codec<T> {
   public T decode(BsonReader reader,
                   DecoderContext decoderContext) {
     try {
-      return objectMapper.readValue(
+      return mapper.readValue(
               rawBsonDocumentCodec.decode(reader, decoderContext).toJson(),
-              clazz);
+              clazz
+      );
     } catch (IOException exception) {
       throw new UncheckedIOException(exception);
     }
