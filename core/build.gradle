@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'net.sintaxis.codec'
-version '0.0.1'
+version '1.0.0'
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ publishing {
         mavenJava(MavenPublication) {
             groupId "net.sintaxis.codec"
             artifactId "mongo-jackson-codec"
-            version "0.0.1"
+            version "1.0.0"
 
             from components.java
         }
