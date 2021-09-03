@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'net.sintaxis.codec'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'org.mongodb:mongodb-driver-sync:4.3.0'
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId "net.sintaxis.codec"
+            artifactId "mongo-jackson-codec"
+            version "0.0.1"
+
+            from components.java
+        }
+    }
+}

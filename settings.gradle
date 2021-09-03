@@ -1,2 +1,5 @@
 rootProject.name = 'mongo-jackson-codec'
 
+['core', 'example'].forEach(it -> {
+    include(it)
+})

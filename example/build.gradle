@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'net.sintaxis.codec.example'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.mongodb:mongodb-driver-sync:4.3.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.5'
+
+    implementation project(":core")
+
+    implementation 'org.slf4j:slf4j-simple:2.0.0-alpha5'
+}
